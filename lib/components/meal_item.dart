@@ -11,10 +11,20 @@ class MealItem extends StatelessWidget {
   }) : super(key: key);
 
   void _selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(
+    Navigator.of(context)
+        .pushNamed(
       AppRoutes.MEALS_DETAIL,
       arguments: meal,
-    );
+    )
+        .then((result) {
+      // aqui podemos receber um valor quando a tela é fechada.
+      // vamos receber o title como exemplo;
+      if (result == null) {
+        print('Sem resultado!');
+      } else {
+        print('O nome da refeição é $result');
+      }
+    });
   }
 
   @override
