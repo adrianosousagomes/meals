@@ -3,7 +3,10 @@ import 'package:meals/components/main_drawer.dart';
 import 'package:meals/models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({Key? key, required this.onSettingsChanged})
+      : super(key: key);
+
+  final Function(Settings) onSettingsChanged;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -22,7 +25,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       title: Text(title),
       subtitle: Text(subtitle),
       value: value,
-      onChanged: onChange,
+      onChanged: (value) {
+        onChange(value);
+        widget.onSettingsChanged(settings);
+      },
     );
   }
 
@@ -54,19 +60,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _createSwitch(
                   'Sem Lactose',
                   'Só exibe refeições sem lactose!',
-                  settings.isGlutenFree,
+                  settings.isLactoseFree,
                   (value) => setState(() => settings.isLactoseFree = value),
                 ),
                 _createSwitch(
                   'Vegana',
                   'Só exibe refeições veganas!',
-                  settings.isGlutenFree,
+                  settings.isVegan,
                   (value) => setState(() => settings.isVegan = value),
                 ),
                 _createSwitch(
                   'Vegetariana',
                   'só exibe refeições vegetarianas!',
-                  settings.isGlutenFree,
+                  settings.isVegetarian,
                   (value) => setState(() => settings.isVegetarian = value),
                 )
               ],
