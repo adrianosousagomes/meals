@@ -59,19 +59,20 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Vamos cozinhar?',
       theme: ThemeData(
-          primarySwatch: Colors.pink,
-          accentColor: Colors.amber,
-          fontFamily: 'Raleway',
-          canvasColor: Color.fromRGBO(255, 254, 229, 1),
-          textTheme: ThemeData.light().textTheme.copyWith(
-              headline6:
-                  TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'))),
+        primarySwatch: Colors.pink,
+        accentColor: Colors.amber,
+        fontFamily: 'Raleway',
+        canvasColor: Color.fromRGBO(255, 254, 229, 1),
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'),
+            ),
+      ),
       routes: {
         AppRoutes.HOME: (ctx) => TabsScreen(favoriteMeals: _favoriteMeals),
         AppRoutes.CATEGORIES_MEALS: (ctx) =>
             CategoriesMealsScreen(meals: _availableMeals),
-        AppRoutes.MEALS_DETAIL: (ctx) =>
-            MealDetailScreen(onToggleFavorite: _toggleFavorite, isFavorite: _isFavorite),
+        AppRoutes.MEALS_DETAIL: (ctx) => MealDetailScreen(
+            onToggleFavorite: _toggleFavorite, isFavorite: _isFavorite),
         AppRoutes.SETTINGS: (ctx) => SettingsScreen(
               onSettingsChanged: _filterMeals,
               settings: settings,
